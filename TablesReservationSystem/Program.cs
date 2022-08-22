@@ -15,14 +15,8 @@ bool userType;
 
 Console.WriteLine("Welcome to the best restaurant in Earth!!");
 //The register cicle until ten users are registered.
-while (true)
+while (currentIndex < 10)
 {
-    //validate the number of user registered
-    if (currentIndex == 10)
-    {
-        Console.WriteLine("The restaurant is full, try again next week.");
-        Environment.Exit(0);
-    }
     //ask if an user is registered
     Console.WriteLine("\nAre you a registered User? Write true, if you are registered, or false, in the case if not.");
     userType = Convert.ToBoolean(Console.ReadLine());
@@ -57,3 +51,12 @@ while (true)
         currentIndex++;
     }
 }
+//Show all the users that are registered for the dinner.
+Console.WriteLine("The restaurant is full, try again next week. \nThese are the guests to the dinner: ");
+int auxIndex = 0;
+foreach (string element in userNames)
+{
+    Console.WriteLine("User number: {0} and User name: {1}", auxIndex+1, userNames[auxIndex]);
+    auxIndex++;
+}
+Environment.Exit(0);
