@@ -7,21 +7,53 @@
  */
 
 // An array to save the users registered
-string[] userNames = new string[10] { "Mike", "", "", "", "", "", "", "", "", "" };
-
+string[] userNames = new string[10];
+// The current index of user array
+int currentIndex = 0;
+// validation variable of an existing user.
 bool userType;
 
 Console.WriteLine("Welcome to the best restaurant in Earth!!");
-//
+//The register cicle until ten users are registered.
 while (true)
 {
-    Console.WriteLine("Are you a registered User? Write true, if you are registered, or false, in the case if not.");
+    //validate the number of user registered
+    if (currentIndex == 10)
+    {
+        Console.WriteLine("The restaurant is full, try again next week.");
+        Environment.Exit(0);
+    }
+    //ask if an user is registered
+    Console.WriteLine("\nAre you a registered User? Write true, if you are registered, or false, in the case if not.");
     userType = Convert.ToBoolean(Console.ReadLine());
 
     if (userType == true)
     {
-        Console.WriteLine("Hello, you're a registered user, please enter your exact user name");
+        //ask the name of the user registered
+        Console.WriteLine("\nHello, you're a registered user, please enter your exact user name");
         string userToSearch = Console.ReadLine();
-        Console.WriteLine("The user you searched is {0}", userToSearch);
+
+        //search by user registered
+        Console.WriteLine("\nThe user you searched is {0}", userToSearch);
+        int index = Array.IndexOf(userNames, userToSearch);
+        //validate the user existence
+        if (index == -1)
+        {
+            Console.WriteLine("\nUser not found, try again or register");
+        }
+        else
+        {
+            Console.WriteLine("\nWelcome {0}, it's a pleasure to give you food", userNames[index]);
+        }
+    }
+    else if (userType == false)
+    {
+        //Register a new user
+        Console.WriteLine("Please write and remember your User Name");
+        userNames[currentIndex] = Console.ReadLine();
+       
+        Console.WriteLine("Your user has been saved successfully\n" + 
+            "Your User Name is {0}", userNames[currentIndex]);
+        currentIndex++;
     }
 }
